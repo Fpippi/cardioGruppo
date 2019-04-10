@@ -30,5 +30,16 @@ namespace DataCardio.Test
             }
 
         }
+        [DataTestMethod]
+        [DataRow("w", "non puoi inserire delle lettere")]
+        [DataRow("50", "Bradicardia")]
+        [DataRow("0", "attenzione non puoi inserire un eta uguale a 0 o inferiore")]
+        [DataRow("90", "Normale")]
+        [DataRow("110", "Tachicardia")]
+        public void TestMethod2(string eta, string nome)
+        {
+            string nome2 = CardioanalisiLibrary.DataCardio.frequenzanome(eta);
+            Assert.AreEqual(nome, nome2);
+        }
     }
 }
