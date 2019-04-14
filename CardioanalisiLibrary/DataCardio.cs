@@ -63,5 +63,87 @@ namespace CardioanalisiLibrary
 
             return risultato;
         }
+        public static string calcolo(string frequenza,string peso,string eta,string durata,ref string femmina)
+        {
+            string risultato = "";
+
+            try
+            {
+                int A = Convert.ToInt32(eta);
+                int P = Convert.ToInt32(peso);
+                int F = Convert.ToInt32(frequenza);
+                int T = Convert.ToInt32(durata);
+
+                if(T <= 0) risultato = "attenzione non puoi inserire un eta uguale a 0 o inferiore";
+                else if (P <= 0) risultato = "attenzione non puoi inserire un eta uguale a 0 o inferiore";
+                else if (F <= 0) risultato = "attenzione non puoi inserire un eta uguale a 0 o inferiore";
+                else if (A <= 0) risultato = "attenzione non puoi inserire un eta uguale a 0 o inferiore";
+                else
+                {
+                    if ( (((A * 0.2017) + (P * 0.199) + (F * 0.6309) - 55.0969) * T / 4.184) > 0)
+                    {
+                        risultato = Convert.ToString((((A * 0.2017) + (P * 0.199) + (F * 0.6309) - 55.0969) * T / 4.184) > 0);
+                    }
+                    else
+                    {
+                        risultato = "Attenzione hai inserito dei dati non corretti";
+                    }
+                   
+                    if( (((A * 0.074) - (P * 0.126) + (F * 0.4472) - 20.4022) * T / 4.184)> 0)
+                    {
+                        femmina = Convert.ToString(((A * 0.074) + (P * 0.126) + (F * 0.4472) - 20.4022) * T / 4.184);
+                    }
+                    else
+                    {
+                        femmina = "Attenzione hai inserito dei dati non corretti";
+                    }
+                    
+                }
+
+            }
+            catch
+            {
+                risultato = "non puoi inserire delle lettere";
+            }
+
+            return risultato;
+        }
+        public static string allenamento(string allenamento,string Km,string peso)
+        {
+            string calcolo = "";
+
+            try
+            {
+                int Km2 = Convert.ToInt32(Km);
+                int peso2 = Convert.ToInt32(peso);
+
+                if (peso2 == 0)
+                {
+                    calcolo = "non puoi inserire un peso sotto 0";
+                }
+                else if(allenamento.ToUpper() == "CORSA")
+                {
+                    calcolo = Convert.ToString(0.9 * Km2 * peso2);
+                }
+                else if (allenamento.ToUpper() == "CAMMINATA")
+                {
+                    calcolo = Convert.ToString(0.5 * Km2 * peso2);
+                }
+                else
+                {
+                    calcolo = "attenzione devi inserire o camminata o corsa";
+                }
+
+
+
+            }
+            catch
+            {
+                calcolo = "attenzione devi inserire dei numeri sui Km e sul peso";
+            }
+
+
+            return calcolo;
+        }
     }
 }
