@@ -6,7 +6,7 @@ namespace DataCardio.Test
     [TestClass]
     public class UnitTest1
     {
-        [DataTestMethod]
+        [DataTestMethod] //1
         [DataRow("w","non puoi inserire delle lettere",null)]
         [DataRow("10","189","147")]
         [DataRow("0", "attenzione non puoi inserire un eta uguale a 0 o inferiore", null)]
@@ -30,7 +30,7 @@ namespace DataCardio.Test
             }
 
         }
-        [DataTestMethod]
+        [DataTestMethod] //2
         [DataRow("w", "non puoi inserire delle lettere")]
         [DataRow("50", "Bradicardia")]
         [DataRow("0", "attenzione non puoi inserire un eta uguale a 0 o inferiore")]
@@ -42,7 +42,7 @@ namespace DataCardio.Test
             Assert.AreEqual(nome, nome2);
         }
 
-        [DataTestMethod]
+        [DataTestMethod] //3
         [DataRow("w","10","20", "10", "non puoi inserire delle lettere",null)]
         [DataRow("10","w","100", "10", "non puoi inserire delle lettere", null)]
         [DataRow("10","20","w","10", "non puoi inserire delle lettere", null)]
@@ -68,7 +68,7 @@ namespace DataCardio.Test
             }
           
         }
-        [DataTestMethod]
+        [DataTestMethod]//4
         [DataRow("camminata", "60", "10", "300")]
         [DataRow("camminata", "0", "10", "non puoi inserire un peso sotto 0")]
         [DataRow("cammin", "5", "10", "attenzione devi inserire o camminata o corsa")]
@@ -80,6 +80,26 @@ namespace DataCardio.Test
             Assert.AreEqual(risultato, risultato2);
 
         }
+
+        //6
+        [DataTestMethod]//4
+        [DataRow("1,77", "80", "SOVRAPPESO")]
+        [DataRow("1,77", "60", "NORMOPESO")]
+        [DataRow("1,77", "55", "SOTTOPESO")]
+        [DataRow("1,77", "130", "OBESITA’ DI ALTO GRADO")]
+        [DataRow("1,77", "40", "GRAVE MAGREZZA")]
+        [DataRow("1,77", "100", "OBESITA’ DI MEDIO GRADO")]
+        [DataRow("w", "80", "devi inserire dei numeri")]
+        [DataRow("1,77", "w", "devi inserire dei numeri")]
+        [DataRow("-10", "80", "non puoi inserire numeri negativi")]
+        [DataRow("1,77", "-7", "non puoi inserire numeri negativi")]
+        public void TestMethod6(string altezza, string peso,string risultato)
+        {
+            string risultato2 = CardioanalisiLibrary.DataCardio.pesoideale(altezza, peso);
+            Assert.AreEqual(risultato, risultato2);
+
+        }
+
 
     }
 }
